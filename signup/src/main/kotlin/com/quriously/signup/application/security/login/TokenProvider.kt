@@ -25,7 +25,7 @@ class TokenProvider(
 
         val now = Date()
         val accessExpireDate = Date(now.time + 1000 * 60 * 30)
-        val refreshExpireDate = Date(now.time + 10000 * 60 * 30)
+        val refreshExpireDate = Date(now.time + 1000 * 60 * 60 * 2)
         return AuthToken(
             access = Jwts.builder()
                 .setClaims(claims)
