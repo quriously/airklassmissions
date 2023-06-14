@@ -13,4 +13,12 @@ class FakeAccountRepository: AccountRepository {
     override fun getByEmail(email: String): Account {
         return map.values.first { it.email == email }
     }
+
+    override fun login(email: String, password: String): Account {
+        TODO("Not yet implemented")
+    }
+
+    override fun exists(email: String): Boolean {
+        TODO("Not yet implemented")
+    }
 }

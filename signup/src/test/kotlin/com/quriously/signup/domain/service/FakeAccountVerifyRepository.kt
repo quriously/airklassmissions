@@ -25,4 +25,8 @@ class FakeAccountVerifyRepository: AccountVerifyRepository {
         throw InvalidDataException()
     }
 
+    override fun getTopByEmail(email: String): AccountVerify {
+        TODO("Not yet implemented")
+    }
+
 }
