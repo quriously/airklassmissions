@@ -31,6 +31,7 @@ class AccountServiceTest {
     fun `회원 가입 테스트`() {
         //given
         val email = "taekyun@quriously.com"
+        val name = "택윤"
         val password = "xordbs224!"
         val passwordConfirm = password
         val terms = listOf(AccountTermType.SERVICE, AccountTermType.PRIVACY)
@@ -42,6 +43,7 @@ class AccountServiceTest {
         //when
         val command = AccountRegisterCommand(
             email = email,
+            name = "택윤",
             accountVerifyId = accountVerify.id,
             password = password,
             passwordConfirm = passwordConfirm,
@@ -72,6 +74,7 @@ class AccountServiceTest {
         //when
         val command = AccountRegisterCommand(
             email = email,
+            name = "택윤",
             accountVerifyId = accountVerify.id,
             password = password,
             passwordConfirm = passwordConfirm,
@@ -90,6 +93,7 @@ class AccountServiceTest {
     fun `회원 가입시 필수 약관 입력 되지 않았을 때`() {
         //given
         val email = "taekyun@quriously.com"
+        val name = "택윤"
         val password = "xordbs224!"
         val passwordConfirm = password
         val terms = listOf(AccountTermType.SERVICE)
@@ -101,6 +105,7 @@ class AccountServiceTest {
         //when
         val command = AccountRegisterCommand(
             email = email,
+            name = name,
             accountVerifyId = accountVerify.id,
             password = password,
             passwordConfirm = passwordConfirm,
@@ -118,6 +123,7 @@ class AccountServiceTest {
     fun `회원 가입시 가입하려는 email과 인증 받은 emaild이 다를 경우`() {
         //given
         val email = "taekyun@quriously.com"
+        val name = "택윤"
         val password = "1234"
         val passwordConfirm = password
         val terms = listOf(AccountTermType.SERVICE)
@@ -130,6 +136,7 @@ class AccountServiceTest {
         //when
         val command = AccountRegisterCommand(
             email = email,
+            name = name,
             accountVerifyId = accountVerify.id,
             password = password,
             passwordConfirm = passwordConfirm,

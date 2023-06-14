@@ -1,20 +1,21 @@
 package com.quriously.signup.domain.entity
 
 import jakarta.persistence.*
+import java.time.LocalDate
 import java.time.ZonedDateTime
-import java.util.Date
 
 @Entity
 class Account(
     @Column(unique = true)
     val email: String,
+    val name: String,
     val password: String,
 
     @ElementCollection
     @CollectionTable(name = "account_terms", joinColumns = [JoinColumn(name = "account_id")])
     val terms: Set<AccountTermType>,
 
-    val birthday: Date,
+    val birthday: LocalDate,
 
     ) {
     @Id

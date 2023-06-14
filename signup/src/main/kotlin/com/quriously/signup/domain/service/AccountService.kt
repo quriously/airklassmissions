@@ -42,6 +42,7 @@ open class AccountService(
 
         val entity = Account(
             email = command.email,
+            name = command.name,
             password = command.password,
             terms = command.terms.toSet(),
             birthday = command.birthday,
