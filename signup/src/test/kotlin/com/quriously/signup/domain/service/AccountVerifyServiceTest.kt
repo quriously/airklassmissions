@@ -1,6 +1,7 @@
 package com.quriously.signup.domain.service
 
 import com.quriously.signup.domain.exception.InvalidDataException
+import com.quriously.signup.domain.repository.AccountRepository
 import com.quriously.signup.domain.repository.AccountVerifyRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -8,13 +9,18 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class AccountVerifyServiceTest {
+    private lateinit var accountRepository: AccountRepository
     private lateinit var accountVerifyRepository: AccountVerifyRepository
     private lateinit var accountVerifyService: AccountVerifyService
 
     @BeforeEach
     fun setUp() {
+        accountRepository = FakeAccountRepository()
         accountVerifyRepository = FakeAccountVerifyRepository()
-        accountVerifyService = AccountVerifyService(accountVerifyRepository)
+        accountVerifyService = AccountVerifyService(
+            accountRepository,
+            accountVerifyRepository
+        )
     }
 
     @Test
@@ -36,7 +42,7 @@ class AccountVerifyServiceTest {
         accountVerifyService.sendCode(email)
 
         //when
-        val invalidCode = 124324
+        val invalidCode = "124324"
 
         //then
         assertThatThrownBy { accountVerifyService.verifyCode(email, invalidCode) }

@@ -1,17 +1,12 @@
 package com.quriously.signup.domain.entity
 
-import jakarta.persistence.CollectionTable
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
+import jakarta.persistence.*
 import java.time.ZonedDateTime
 import java.util.Date
 
 @Entity
 class Account(
+    @Column(unique = true)
     val email: String,
     val password: String,
 

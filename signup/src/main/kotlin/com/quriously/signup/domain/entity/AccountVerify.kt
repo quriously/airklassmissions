@@ -16,16 +16,16 @@ class AccountVerify(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
 
-    val code: Int = (111111..999999).random()
+    val code: String = (111111..999999).random().toString()
     val expiredAt: ZonedDateTime = ZonedDateTime.now().plusHours(1)
     val sendedAt: ZonedDateTime = ZonedDateTime.now()
     var verifiedAt: ZonedDateTime? = null
         private set
 
-    fun verify(code: Int): Boolean {
+    fun verify(code: String): Long {
         if (this.code == code) {
             verifiedAt = ZonedDateTime.now()
-            return true
+            return id
         }else if(this.expiredAt.isAfter(ZonedDateTime.now())){
             throw ExpiredCodeException()
         }

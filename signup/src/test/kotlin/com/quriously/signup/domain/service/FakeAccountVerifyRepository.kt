@@ -16,7 +16,7 @@ class FakeAccountVerifyRepository: AccountVerifyRepository {
         return map.values.first { it.id == id }
     }
 
-    override fun getByEmailAndCode(email: String, code: Int): AccountVerify {
+    override fun getByEmailAndCode(email: String, code: String): AccountVerify {
         map[email]?.let {
             if(it.code == code){
                 return map[email]!!

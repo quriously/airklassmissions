@@ -23,7 +23,7 @@ class AccountServiceTest {
     fun setUp() {
         accountRepository = FakeAccountRepository()
         accountVerifyRepository = FakeAccountVerifyRepository()
-        accountVerifyService = AccountVerifyService(accountVerifyRepository)
+        accountVerifyService = AccountVerifyService(accountRepository, accountVerifyRepository)
         accountService = AccountService(accountRepository, accountVerifyRepository)
     }
 
@@ -31,7 +31,7 @@ class AccountServiceTest {
     fun `회원 가입 테스트`() {
         //given
         val email = "taekyun@quriously.com"
-        val password = "1234"
+        val password = "xordbs224!"
         val passwordConfirm = password
         val terms = listOf(AccountTermType.SERVICE, AccountTermType.PRIVACY)
         val birthday = Date(1993, 7, 10)
@@ -90,7 +90,7 @@ class AccountServiceTest {
     fun `회원 가입시 필수 약관 입력 되지 않았을 때`() {
         //given
         val email = "taekyun@quriously.com"
-        val password = "1234"
+        val password = "xordbs224!"
         val passwordConfirm = password
         val terms = listOf(AccountTermType.SERVICE)
         val birthday = Date(1993, 7, 10)
