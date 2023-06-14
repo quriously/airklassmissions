@@ -8,7 +8,7 @@ docker rmi $(docker images -q)
 echo "##################################"
 echo "###### git checkout release ######"
 echo "##################################"
-git checkout master
+git checkout main
 
 echo "###########################"
 echo "######### git pull ########"
