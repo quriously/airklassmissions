@@ -2,6 +2,7 @@ package com.quriously.signup.application.controller
 
 import com.quriously.signup.application.contract.ApiError
 import com.quriously.signup.domain.contract.exception.DomainException
+import com.quriously.signup.domain.exception.PermissionDenyException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
@@ -47,6 +48,18 @@ class ControllerExceptionAdviser {
                 data = mapOf(),
             ),
             HttpStatus.BAD_REQUEST,
+        )
+    }
+
+    @ExceptionHandler(value = [PermissionDenyException::class])
+    fun handlePermissionDenyException(e: PermissionDenyException): ResponseEntity<ApiError> {
+        return ResponseEntity(
+            ApiError(
+                code = e.code,
+                message = e.message,
+                data = e.data,
+            ),
+            HttpStatus.FORBIDDEN,
         )
     }
 }

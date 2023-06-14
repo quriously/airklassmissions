@@ -1,6 +1,7 @@
 package com.quriously.signup.application.repository
 
 import com.quriously.signup.domain.entity.Account
+import com.quriously.signup.domain.exception.LoginException
 import com.quriously.signup.domain.exception.NotFoundEmailException
 import com.quriously.signup.domain.repository.AccountRepository
 import jakarta.persistence.EntityNotFoundException
@@ -23,11 +24,19 @@ class AccountRepositoryImpl(
         }
     }
 
+    override fun login(email: String, password: String): Account {
+        return try{
+            jpaAccountRepository.getByEmailAndPassword(email, password)
+        } catch (e: Exception) {
+            throw LoginException()
+        }
+    }
+
     override fun exists(email: String): Boolean {
         return try {
             jpaAccountRepository.getByEmail(email)
             true
-        } catch (e: EntityNotFoundException) {
+        } catch (e: Exception) {
             false
         }
     }
@@ -36,4 +45,5 @@ class AccountRepositoryImpl(
 interface JpaAccountRepository : JpaRepository<Account, Long> {
     fun getByEmail(email: String): Account
     fun findByEmail(email: String): Account?
+    fun getByEmailAndPassword(email: String, password: String): Account
 }

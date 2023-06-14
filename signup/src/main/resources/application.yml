@@ -2,7 +2,16 @@ server:
   port: ${PORT:8080}
   forward-headers-strategy: framework
   servlet:
-      context-path: /
+    context-path: /
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  packages-to-scan: com.quriously.signup
 
 spring:
   datasource:
@@ -15,3 +24,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: 'validate'
+
+env:
+  secret-key: "taxijjangsecretkey"

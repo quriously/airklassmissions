@@ -1,5 +1,7 @@
 package com.quriously.signup.domain.service
 
+import com.quriously.signup.application.security.login.AuthToken
+import com.quriously.signup.application.security.login.TokenProvider
 import com.quriously.signup.domain.dto.request.AccountRegisterCommand
 import com.quriously.signup.domain.entity.Account
 import com.quriously.signup.domain.entity.AccountTermType
@@ -13,13 +15,10 @@ import org.springframework.transaction.annotation.Transactional
 open class AccountService(
     private val accountRepository: AccountRepository,
     private val accountVerifyRepository: AccountVerifyRepository,
+    private val tokenProvider: TokenProvider,
 ) : AccountRegisterMutatorUseCase {
     @Transactional
     override fun createAccount(command: AccountRegisterCommand): Account {
-        if (accountRepository.exists(command.email)) {
-            throw AlreadyRegisterAccountException(command.email)
-        }
-
         val accountVerify: AccountVerify
         try {
             accountVerify = accountVerifyRepository.getById(command.accountVerifyId)
@@ -50,6 +49,10 @@ open class AccountService(
         )
         accountRepository.save(entity)
         return entity
+    }
+
+    override fun login(email: String, password: String): AuthToken {
+        return tokenProvider.generateToken(accountRepository.login(email, password))
     }
 
     private fun checkPassword(password: String, passwordConfirm: String): Boolean {

@@ -3,7 +3,6 @@ package com.quriously.signup.domain.service
 import com.quriously.signup.domain.entity.AccountVerify
 import com.quriously.signup.domain.exception.AlreadyRegisterAccountException
 import com.quriously.signup.domain.exception.InvalidDataException
-import com.quriously.signup.domain.exception.NotFoundEmailException
 import com.quriously.signup.domain.port.`in`.AccountVerifyMutatorUseCase
 import com.quriously.signup.domain.repository.AccountRepository
 import com.quriously.signup.domain.repository.AccountVerifyRepository

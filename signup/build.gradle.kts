@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.1.0"
+    id("org.springframework.boot") version "3.0.5"
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.8.21"
     kotlin("plugin.spring") version "1.8.21"
@@ -31,6 +31,17 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-devtools")
+
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+
+    // com.sun.xml.bind
+    implementation("com.sun.xml.bind:jaxb-impl:4.0.1")
+    implementation("com.sun.xml.bind:jaxb-core:4.0.1")
+    // javax.xml.bind
+    implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
+
+    // Swagger
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
