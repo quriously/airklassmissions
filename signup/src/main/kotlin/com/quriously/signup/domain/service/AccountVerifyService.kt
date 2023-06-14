@@ -9,8 +9,8 @@ import com.quriously.signup.domain.repository.AccountVerifyRepository
 import org.springframework.transaction.annotation.Transactional
 
 open class AccountVerifyService(
-    val accountRepository: AccountRepository,
-    val accountVerifyRepository: AccountVerifyRepository,
+    private val accountRepository: AccountRepository,
+    private val accountVerifyRepository: AccountVerifyRepository,
 ) : AccountVerifyMutatorUseCase {
     override fun sendCode(email: String): String {
         if (accountRepository.exists(email)) {

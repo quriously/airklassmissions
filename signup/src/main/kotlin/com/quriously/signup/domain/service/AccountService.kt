@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional
 open class AccountService(
     private val accountRepository: AccountRepository,
     private val accountVerifyRepository: AccountVerifyRepository,
-    private val tokenProvider: TokenProvider,
 ) : AccountRegisterMutatorUseCase {
     @Transactional
     override fun createAccount(command: AccountRegisterCommand): Account {
@@ -51,8 +50,8 @@ open class AccountService(
         return entity
     }
 
-    override fun login(email: String, password: String): AuthToken {
-        return tokenProvider.generateToken(accountRepository.login(email, password))
+    override fun login(email: String, password: String): Account {
+        return accountRepository.login(email, password)
     }
 
     private fun checkPassword(password: String, passwordConfirm: String): Boolean {

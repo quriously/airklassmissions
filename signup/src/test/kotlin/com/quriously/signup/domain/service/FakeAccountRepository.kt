@@ -15,10 +15,10 @@ class FakeAccountRepository: AccountRepository {
     }
 
     override fun login(email: String, password: String): Account {
-        TODO("Not yet implemented")
+        return map.values.first { it.email == email && it.password == password }
     }
 
     override fun exists(email: String): Boolean {
-        TODO("Not yet implemented")
+        return map.values.any { it.email == email }
     }
 }

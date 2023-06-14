@@ -12,11 +12,9 @@ import org.springframework.stereotype.Service
 class AccountServiceImpl(
     accountRepository: AccountRepository,
     accountVerifyRepository: AccountVerifyRepository,
-    tokenProvider: TokenProvider,
 ) : AccountService(
     accountRepository,
     accountVerifyRepository,
-    tokenProvider,
 )
 
 @Service

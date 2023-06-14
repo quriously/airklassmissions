@@ -1,6 +1,5 @@
 package com.quriously.signup.domain.service
 
-import com.quriously.signup.application.security.login.TokenProvider
 import com.quriously.signup.domain.dto.request.AccountRegisterCommand
 import com.quriously.signup.domain.entity.AccountTermType
 import com.quriously.signup.domain.exception.InvalidAccountAndAccountVerifyException
@@ -19,15 +18,13 @@ class AccountServiceTest {
     private lateinit var accountVerifyRepository: AccountVerifyRepository
     private lateinit var accountVerifyService: AccountVerifyService
     private lateinit var accountService: AccountService
-    private lateinit var tokenProvider: TokenProvider
 
     @BeforeEach
     fun setUp() {
-        tokenProvider = TokenProvider(accountRepository, "")
         accountRepository = FakeAccountRepository()
         accountVerifyRepository = FakeAccountVerifyRepository()
         accountVerifyService = AccountVerifyService(accountRepository, accountVerifyRepository)
-        accountService = AccountService(accountRepository, accountVerifyRepository, tokenProvider)
+        accountService = AccountService(accountRepository, accountVerifyRepository)
     }
 
     @Test

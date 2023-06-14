@@ -26,7 +26,7 @@ class FakeAccountVerifyRepository: AccountVerifyRepository {
     }
 
     override fun getTopByEmail(email: String): AccountVerify {
-        TODO("Not yet implemented")
+        return map.values.first { it.email == email }
     }
 
 }

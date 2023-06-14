@@ -6,5 +6,5 @@ import com.quriously.signup.domain.entity.Account
 
 interface AccountRegisterMutatorUseCase {
     fun createAccount(command: AccountRegisterCommand): Account
-    fun login(email: String, password: String): AuthToken
+    fun login(email: String, password: String): Account
 }

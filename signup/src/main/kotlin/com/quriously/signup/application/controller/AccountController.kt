@@ -81,6 +81,6 @@ class AccountController(
     fun login(
         @RequestBody @Valid request: LoginRequest,
     ): AuthToken {
-        return accountService.login(request.email, request.password)
+        return tokenProvider.generateToken(accountService.login(request.email, request.password))
     }
 }
