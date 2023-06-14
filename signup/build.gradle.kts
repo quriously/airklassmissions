@@ -45,7 +45,6 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-
     runtimeOnly("mysql:mysql-connector-java:8.0.28")
     testImplementation("org.assertj:assertj-core:3.23.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
