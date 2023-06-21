@@ -13,6 +13,7 @@ import com.quriously.signup.domain.exception.PermissionDenyException
 import com.quriously.signup.domain.service.AccountService
 import com.quriously.signup.domain.service.AccountVerifyService
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
@@ -82,7 +83,7 @@ class AccountController(
     )
     @GetMapping("/me")
     fun getMyAccount(
-        @RequestHeader("Authorization") access: String?,
+        @Parameter(hidden=true) @RequestHeader("Authorization") access: String?,
     ): AccountResponse {
         if (access == null) throw PermissionDenyException()
         return try {
