@@ -18,11 +18,14 @@ open class AccountService(
 ) : AccountRegisterMutatorUseCase {
     @Transactional
     override fun createAccount(command: AccountRegisterCommand): Account {
+        if (accountRepository.exists(command.email)) {
+            throw AlreadyExistAccountException()
+        }
         val accountVerify: AccountVerify
         try {
             accountVerify = accountVerifyRepository.getById(command.accountVerifyId)
         } catch (e: Exception) {
-            throw Exception("Invalid accountVerifyId")
+            throw InvalidAccountAndAccountVerifyException()
         }
 
         if (accountVerify.email != command.email) {
